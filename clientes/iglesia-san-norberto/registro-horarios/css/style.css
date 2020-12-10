@@ -1,0 +1,84 @@
+.container-login {
+  padding-top: 20px;
+}
+
+.head {
+  text-align: center;
+}
+.head h1 {
+  color: rgb(78, 78, 78);
+  font-size: 60px;
+  margin-bottom: 50px;
+}
+
+.head img {
+  width: 70%;
+  height: 70%;
+}
+
+.space {
+  width: 85%;
+  background: #d6d6d6;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.regPrev{
+  text-align: center;
+}
+
+.containerone {
+  padding-top: 10px;
+  margin: 25px;
+}
+
+.containerone .item {
+  padding: 15px;
+  float: left;
+}
+
+.containerone .item h3 {
+  color: #7e7d7d;
+  font-size: 30px;
+}
+
+.containerone .item input {
+  width: 165px;
+  height: 36px;
+}
+
+.horarios {
+  padding-top: 10px;
+  margin: 25px;
+}
+
+.horarios .htittle h3{
+  text-align: center;
+  color: #7e7d7d;
+  font-size: 20px;
+}
+
+
+.horarios .hora {
+  width: 40%;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 50px;
+}
+
+.horarios .hora .item {
+  padding-right: 25px;
+  padding-left: 25px;
+}
+
+.boton {
+  display: flex;
+  justify-content: center;
+}
+
+.boton .btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  background-color: #017fb5;
+}

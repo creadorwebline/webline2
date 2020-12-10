@@ -1,0 +1,11 @@
+@media (max-width: 767px) {
+    .container-login h3{
+        font-size: 20px;
+    }
+    .container-registros{
+        width: 85%;
+    }
+    .container-registros input{
+        width: 70%;
+    }
+}

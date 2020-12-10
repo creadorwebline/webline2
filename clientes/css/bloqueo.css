@@ -1,0 +1,14 @@
+#bloqueo{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+#bloqueobox{
+    margin-top: 25px;
+    border: 2px solid#017fb5;
+    border-radius: 5px;
+}

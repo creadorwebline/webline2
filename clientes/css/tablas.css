@@ -1,0 +1,32 @@
+.div_table {
+    width: 100%;
+    height: 100%;
+}
+
+.menu-list {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+h1 {
+    font-weight: 900;
+    font-size: 30px;
+    text-align: center;
+    color: #017fb5;
+}
+
+th {
+    width: 500px;
+    text-align: center;
+    color: #017fb5;
+    border: 3px solid #017fb5;
+}
+
+td {
+    width: 200px;
+}
+
+input {
+    width: 100%;
+    border: none;
+}

@@ -1,0 +1,52 @@
+.menu-list {
+    margin-right: auto;
+    margin-left: auto;
+}
+.buscador input{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #017fb5;
+}
+
+th {
+    width: 500px;
+    text-align: center;
+    color: #017fb5;
+    border: 3px solid #ffffff;
+}
+
+td {
+    width: 200px;
+}
+
+.boton{
+    font-weight: 900;
+    font-size: 20px;
+    text-align: center;
+    margin-top: 10px;
+}
+.btn{
+    background-color: #017fb5;
+    color: #ffffff;
+    border-top: solid 1px;
+    margin: auto;
+}
+
+@media (max-width: 767px) {
+    #ln{
+        display: none;
+    }
+    #tel{
+        display: none;
+    }
+    #date{
+        width: 60%;
+    }
+    #btn{
+        display: flex;
+    }
+    #name{
+        display: none;
+    }
+}
