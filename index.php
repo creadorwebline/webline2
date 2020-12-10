@@ -4,7 +4,6 @@
 <head>
     <?php
     include('header.html');
-    include("sendemail.php");
     ?>
 </head>
 <!--/head-->
