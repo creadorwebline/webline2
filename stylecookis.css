@@ -1,0 +1,14 @@
+#div-cookies {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px -5px 15px gray;
+  padding: 7px;
+  text-align: center;
+  z-index: 99;
+}
+#div-cookies a{
+  color: #017fb5;
+}
