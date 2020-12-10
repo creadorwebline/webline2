@@ -1,0 +1,151 @@
+/*wp*/
+
+.whatsapp {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    z-index: 100;
+}
+
+.whatsapp-icon {
+    margin-top: 13px;
+}
+
+
+/*wp*/
+
+
+/*head*/
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    background: url(../images/main-background.jpg);
+    background-size: 1500px;
+    background-position: center;
+    color: #444;
+    font-size: 12px;
+    color: #333;
+}
+
+.image-main {
+    width: 100%;
+    height: 800px;
+    background-image: url(../images/head.jpg);
+    background-size: cover;
+    background-position: center;
+}
+
+
+/*head*/
+
+.tittle {
+    width: 100%;
+    height: 100px;
+    background: url(../images/tittle.jpg);
+    background-position-y: -500px;
+    margin-top: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.items {
+    width: 75%;
+    background-color: rgb(255, 255, 255);
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 4px solid #58585815;
+    border-radius: 5px;
+    box-shadow: 6px 6px 3px #464646d2;
+}
+
+.items .imgn {
+    width: 40%;
+    float: right;
+    margin-right: 40px;
+    box-shadow: 6px 6px 3px #464646d2;
+}
+
+.items .imgnm {
+    width: 40%;
+    float: right;
+    margin-right: 40px;
+    box-shadow: 6px 6px 3px #464646d2;
+}
+
+.items .imgnm img {
+    width: 100%;
+    height: 250px;
+}
+
+.items .imgn img {
+    width: 100%;
+}
+
+.items .paragraf {
+    margin: 55px;
+    padding: 10px;
+    width: 40%;
+    border-radius: 5px;
+    border-top: 1px solid #46464626;
+    border-bottom: 1px solid #46464626;
+}
+
+.items .paragraf h3 {
+    font-size: 35px;
+    padding-bottom: 5px;
+}
+
+.items .paragraf p {
+    font-size: 15px;
+}
+
+.items .paragraf ul {
+    padding-top: 5px;
+    margin-left: 15px;
+    font-size: 15px;
+}
+
+
+/*bread*/
+
+#bread {
+    width: 100%;
+}
+
+#bread .tittle {
+    margin-top: 5px;
+}
+
+
+/*bread*/
+
+
+/*drinks*/
+
+
+/*drinks*/
+
+
+/*others*/
+
+#others .imgn img {
+    height: 500px;
+}
+
+
+/*others*/
