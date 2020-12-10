@@ -67,6 +67,35 @@ if (!$usuariosession) {
             <div id="bloqueobox">
                 <p>seleccione la fecha que quiere bloquear</p>
                 <input type="date" placeholder="Fecha-registro" name="fecha" required>
+                <div class="horarios">
+                    <div class="hora">
+                        <div class="htittle">
+                            <h3>Seleccione una hora</h3>
+                        </div>
+                        <table class="table table-responsive">
+                            <td class="item">
+                                <input type="radio" name="hora" value="7:30" required><span>7:30am</span>
+                            </td>
+                            <td class="item">
+                                <input type="radio" name="hora" value="8:00" required><span>8:00am</span>
+                            </td>
+                            <td class="item">
+                                <input type="radio" name="hora" value="9:30" required><span>9:30am</span>
+                            </td>
+                        </table>
+                        <table class="table table-responsive">
+                            <td class="item">
+                                <input type="radio" name="hora" value="12:30" required><span>12:30pm</span>
+                            </td>
+                            <td class="item">
+                                <input type="radio" name="hora" value="16:30" required><span>4:30pm</span>
+                            </td>
+                            <td class="item">
+                                <input type="radio" name="hora" value="18:30" required><span>6:30pm</span>
+                            </td>
+                        </table>
+                    </div>
+                </div>
                 <input class="btn" type="submit" name="Bloquear" value="Bloquear">
             </div>
         </form>
@@ -87,10 +116,11 @@ if (!$usuariosession) {
                         date_default_timezone_set("America/Bogota");
                         $consulta = "SELECT * FROM bloqueofechas";
                         $busqueda = mysqli_query($conex, $consulta);
-                        while ($row = mysqli_fetch_array($busqueda)) {?>
+                        while ($row = mysqli_fetch_array($busqueda)) { ?>
                             <tr>
                                 <td id="name"><input id="01" type="text" name="nombreH" value="<?php echo $row['fechabloqueada'] ?>" readonly></td>
-                                <td id="borrar"><a href="Borrarregistro.php?id=<?php echo $row['id'];?>&tabla=bloqueofechas">eliminar</a></td>
+                                <td id="name"><input id="01" type="text" name="nombreH" value="<?php echo $row['horabloqueada'] ?>" readonly></td>
+                                <td id="borrar"><a href="Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=bloqueofechas">eliminar</a></td>
                             </tr>
                         <?php } ?>
                     </form>

@@ -22,7 +22,7 @@
     <header id="home">
         <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="item active" style="background-image: url(images/slider/1.jpg)">
+                <div class="item active" style="background-image: url(images/slider/1.webp)">
                     <div class="caption">
                         <img class="principallogo" src="images/185.png" alt=""><br>
                         <h1 class="animated fadeInLeftBig">Bienvenidos a <span>Webline</span></h1>
@@ -31,7 +31,7 @@
                             servicios</a>
                     </div>
                 </div>
-                <div class="item" style="background-image: url(images/slider/2.jpg)">
+                <div class="item" style="background-image: url(images/slider/2.webp)">
                     <div class="caption">
                         <h1 class="animated fadeInLeftBig">Hacemos que las cosas <span>Pasen</span></h1>
                         <p class="animated fadeInRightBig">Aquí encontrarás increibles diseños y experiencias</p>
@@ -39,7 +39,7 @@
                             servicios</a>
                     </div>
                 </div>
-                <div class="item" style="background-image: url(images/slider/3.jpg)">
+                <div class="item" style="background-image: url(images/slider/3.webp)">
                     <div class="caption">
                         <h1 class="animated fadeInLeftBig">Somos diseño y <span>Creatividad</span></h1>
                         <p class="animated fadeInRightBig">La creatividad es el poder de conectar lo aparentemente desconectado - William Plomer.</p>
@@ -155,7 +155,7 @@
                     <div class="col-sm-3">
                         <div class="team-member wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
                             <div class="member-image">
-                                <img class="img-responsive" src="images/team/3.jpg" alt="">
+                                <img class="img-responsive" src="images/team/3.webp" alt="">
                             </div>
                             <div class="member-info">
                                 <h3>Creación de diseños originales</h3>

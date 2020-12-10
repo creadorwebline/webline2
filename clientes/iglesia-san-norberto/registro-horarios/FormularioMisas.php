@@ -61,6 +61,7 @@
         <div class="head">
             <h1 class="tittle">Bienvenido a la Parroquia San Norberto</h1>
             <img src="../../../clientes/img/horarios.jpeg">
+            <h3>LOS DÍAS 31 Y 24 DE DICIEMBRE DE 2020 HABRÁ EUCARISTÍA A LAS 8:00 PM</h3>
         </div>
 
         <div class="space">
@@ -116,6 +117,8 @@
                                 </td>
                                 <td class="item">
                                     <input type="radio" name="hora" value="18:30" required><span>6:30pm</span>
+                                </td><td class="item">
+                                    <input type="radio" name="hora" value="20:00" required><span>8:00pm</span>
                                 </td>
                             </table>
                         </div>
@@ -125,6 +128,7 @@
                     <input class="btn" type="submit" name="enviarHorario">
                 </div>
             </form>
+            
         </div>
     </section>
     <!--/#login-->

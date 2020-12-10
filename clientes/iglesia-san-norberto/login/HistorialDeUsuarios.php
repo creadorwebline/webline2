@@ -6,7 +6,8 @@ if (!$usuariosession) {
     header("Location: login.php");
     die();
 }
-$query = "SELECT * FROM dato ORDER BY apellido ASC";
+$limit = 30;
+$query = "SELECT * FROM dato ORDER BY apellido ASC LIMIT $limit";
 $result = mysqli_query($conex, $query);
 if (isset($_POST["buscar"])) {
     if (strlen($_POST["nombre"]) >= 1 || strlen($_POST["apellido"]) >= 1 || strlen($_POST["cedula"]) >= 1 || strlen($_POST["celular"]) >= 1 || strlen($_POST["fecha"]) >= 1) {
@@ -28,7 +29,25 @@ if (isset($_POST["buscar"])) {
         } else {
             $result = consultas("SELECT * FROM dato");
         }
+    }else {
+        if(strlen($_POST["limitt"]) >= 1){
+            $limit = trim($_POST["limitt"]);
+        }else{
+            $limit = 30;
+        }
+        $sql = null;
+        $consulta = $_SESSION['ultimaConsulta'];
+        $result = consultasall("SELECT * FROM dato ORDER BY apellido ASC LIMIT $limit");
     }
+}else if (isset($_POST["limitar"])) {
+    if(strlen($_POST["limit"]) >= 1){
+        $limit = trim($_POST["limit"]);
+    }else{
+        $limit = 30;
+    }
+    $sql = null;
+    $consulta = $_SESSION['ultimaConsulta'];
+    $result = consultasall("SELECT * FROM dato ORDER BY apellido ASC LIMIT $limit");
 }
 
 function consultas($consulta)
@@ -36,6 +55,12 @@ function consultas($consulta)
     include("../../db/con_db.php");
     $consulta = "SELECT * From dato where " . $consulta;
     $busqueda = mysqli_query($conex, $consulta);
+    return $busqueda;
+}
+function consultasall($consultaall)
+{
+    include("../../db/con_db.php");
+    $busqueda = mysqli_query($conex, $consultaall);
     return $busqueda;
 }
 ?>
@@ -109,6 +134,7 @@ function consultas($consulta)
                         <th><input type="text" placeholder="CC/identificacion" name="cedula" pattern="[0-9]+"></th>
                         <th id="tel"><input type="text" placeholder="Num. telefono" name="celular" pattern="[0-9]+"></th>
                         <th id="date"><input type="date" placeholder="Fecha-registro" name="fecha"></th>
+                        <th id="limit"><input type="text" placeholder="numero de filas" name="limitt" pattern="[0-9]+"></th>
                         <div id="btn" class="boton">
                             <input class="btn" type="submit" name="buscar" value="Buscar">
                         </div>
@@ -145,7 +171,14 @@ function consultas($consulta)
                         <td><a href="Borrarusuario.php?cc=<?php echo $row['CC'];?>">borrar</a></td>
                     </tr>
                 <?php } ?>
-
+                <form method="POST">
+                    <th id="tel"><input type="text" placeholder="numero de filas" name="limit" pattern="[0-9]+"></th>
+                    <th id="btn">
+                        <div id="btn" class="boton">
+                            <input class="btn" type="submit" name="limitar" value="Limitar">
+                        </div>
+                    </th>
+                </form>
             </tbody>
 
         </table>

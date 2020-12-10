@@ -1,4 +1,5 @@
 <?php
+
 include("../../db/con_db.php");
 include("timephp/time.php");
 
@@ -14,13 +15,16 @@ if (isset($_POST["enviarHorario"])) {
             $diaActual = date("Y-m-d");
             $fecha = strtotime(trim($_POST['fecha']));
             $fecha = date("Y-m-d", $fecha);
+            //////////////////////////////////////
+            echo $fecha;//////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////
             //verifica fecha
-            $consulta = "SELECT * FROM bloqueofechas WHERE '$fecha' = fechabloqueada";
+            $consulta = "SELECT * FROM bloqueofechas WHERE '$fecha' = fechabloqueada AND horabloqueada = '$hora'";
             $result = mysqli_query($conex, $consulta);
             $row = mysqli_fetch_array($result);
             if ($row>=1) { 
-                //echo $row;
-                mensaje("Este dia no habrá misa", "FormularioMisas.php");
+                
+                mensaje("Este dia no habrá misa a las ".$hora, "FormularioMisas.php");
             } else {
                 if (((int)$horaActual > (int)$hora) && ($diaActual == $fecha)) {
                     mensaje("Esta misa ya ha pasado o esta en curso", "FormularioMisas.php");
@@ -34,8 +38,8 @@ if (isset($_POST["enviarHorario"])) {
                     $dia = date("N", $dia);
                     $cantDPersonas = cantidadDePersonas($fecha, $hora);
 
-                    if ($dia != 7) {
-                        if ($hora == "7:30" || $hora == "18:30") {
+                    if ($dia != 7 && ($fecha != "2020-12-08" && $fecha != "2020-12-25" && $fecha != "2021-01-01")) {
+                        if(($fecha == "2020-12-31" || $fecha == "2020-12-24") && ($hora == "7:30" || $hora == "18:30" || $hora == "20:00")){
                             if ($cantDPersonas < 54) {
                                 $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
@@ -47,9 +51,23 @@ if (isset($_POST["enviarHorario"])) {
                             } else {
                                 mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
                             }
-                        } else {
-                            mensaje("Hora no establecida de lunes a sabado", "FormularioMisas.php");
-                        }
+                        }else{
+                            if ($hora == "7:30" || $hora == "18:30") {
+                                if ($cantDPersonas < 54) {
+                                    $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
+                                    if ($cantRegistros < 1) {
+                                        insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
+                                        mensaje("Su reserva fue exitosa", "FormularioMisas.php");
+                                    } else {
+                                        mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, "FormularioMisas.php");
+                                    }
+                                } else {
+                                    mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
+                                }
+                            } else {
+                                mensaje("Hora no establecida de lunes a sabado", "FormularioMisas.php");
+                            }
+                        }                       
                     } else {
                         if ($hora != "7:30") {
                             if ($cantDPersonas < 54) {
@@ -64,7 +82,7 @@ if (isset($_POST["enviarHorario"])) {
                                 mensaje("No hay cupos suficientes para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
                             }
                         } else {
-                            mensaje("Hora no establecida para el domingo", "FormularioMisas.php");
+                            mensaje("Hora no establecida para el domingo o festividades decembrinas", "FormularioMisas.php");
                         }
                     }
                 }
