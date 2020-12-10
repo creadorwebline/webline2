@@ -455,30 +455,6 @@ section {
     margin-bottom: 30px;
 }
 
-.progress {
-    height: 20px;
-    background-color: #fff;
-    border-radius: 0;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    margin-bottom: 25px;
-}
-
-.progress-bar {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    text-align: right;
-    padding-right: 12px;
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.progress .progress-bar.six-sec-ease-in-out {
-    -webkit-transition: width 2s ease-in-out;
-    transition: width 2s ease-in-out;
-}
-
-
 /*************************
 ********portfolio CSS*****
 **************************/
@@ -502,72 +478,13 @@ section {
     /*magin-bootom comparte 20px con los h*/
 }
 
-#portfolio .folio-item {
-    position: relative;
-}
-
-#portfolio .overlay {
-    background-color: #000;
-    color: #fff;
-    left: 0;
-    right: 0;
-    bottom: -100%;
-    height: 0;
-    position: absolute;
-    text-align: center;
-    opacity: 0;
-    -webkit-transition: all 0.5s ease-in-out;
-    transition: all 0.5s ease-in-out;
-}
-
-.overlay .overlay-content {
-    display: table;
-    height: 100%;
-    width: 100%;
-}
-
-.overlay .overlay-text {
-    display: table-cell;
-    vertical-align: middle;
-}
-
-.overlay .folio-info {
-    opacity: 0;
-    margin-bottom: 75px;
-    margin-top: -75px;
-    -webkit-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
-}
-
-.overlay .folio-info h3 {
-    margin-top: 0;
-    color: #fff;
-}
-
-.folio-overview a {
-    font-size: 18px;
-    color: #333;
-    height: 50px;
-    width: 50px;
-    line-height: 50px;
-    border-radius: 50%;
-    background-color: #fff;
-    display: inline-block;
-    margin-top: 20px;
-    margin-right: 5px;
-}
-
-.folio-overview a:hover {
-    color: #fff;
-}
-
-.folio-overview .folio-expand {
+.folio-expand {
     margin-top: -500px;
     margin-left: -500px;
 }
 
 .folio-image,
-.folio-overview .folio-expand {
+.folio-expand {
     -webkit-transition: all 0.8s ease-in-out;
     transition: all 0.8s ease-in-out;
 }
@@ -586,18 +503,18 @@ section {
     height: 280px;
 }
 
-#portfolio .folio-item:hover .overlay {
+#portfolio .folio-item:hover {
     opacity: 0.8;
     bottom: 0;
     height: 100%;
 }
 
-#portfolio .folio-item:hover .folio-overview .folio-expand {
+#portfolio .folio-item:hover .folio-expand {
     margin-top: 0;
     margin-left: 0;
 }
 
-#portfolio .folio-item:hover .overlay .folio-info {
+#portfolio .folio-item:hover {
     opacity: 1;
     margin-bottom: 0;
     margin-top: 0;

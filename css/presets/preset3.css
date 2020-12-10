@@ -20,7 +20,6 @@ a:hover, a:focus {
 
 .main-nav, 
 .service-icon, 
-.progress-bar.progress-bar-primary, 
 .single-table.featured, 
 .btn.btn-primary, 
 .twitter-icon .fa-twitter, 
@@ -32,8 +31,7 @@ a:hover, a:focus {
 #footer, 
 .caption .btn-start:hover, 
 .left-control:hover, 
-.right-control:hover, 
-.folio-overview a:hover {
+.right-control:hover{
   background-color:#7FBA00;
 }
 
