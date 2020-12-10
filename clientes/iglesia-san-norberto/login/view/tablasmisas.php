@@ -1,10 +1,10 @@
 <?php
-include("../../db/con_db.php");
+include("../../../db/con_db.php");
 session_start();
 $usuariosession = $_SESSION['user'];
 
 if (!$usuariosession) {
-    header("Location: login.php");
+    header("Location: ../view/login.php");
     die();
 }
 //IMPORTANT!!!!!
@@ -86,7 +86,7 @@ if (isset($_POST["buscar"])) {
 
 function consultas($consulta)
 {
-    include("../../db/con_db.php");
+    include("../../../db/con_db.php");
     $_SESSION['ultimaConsulta'] = $consulta;
     $consulta = "SELECT * From horarios where " . $consulta . "ORDER BY apellido ASC";
     $busqueda = mysqli_query($conex, $consulta);
@@ -95,7 +95,7 @@ function consultas($consulta)
 
 function consultasall($consultaall)
 {
-    include("../../db/con_db.php");
+    include("../../../db/con_db.php");
     $busqueda = mysqli_query($conex, $consultaall);
     return $busqueda;
 }
@@ -111,18 +111,18 @@ function consultasall($consultaall)
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Webline - San Norberto</title>
-    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../../css/animate.min.css" rel="stylesheet">
-    <link href="../../../css/font-awesome.min.css" rel="stylesheet">
-    <link href="../../../css/lightbox.css" rel="stylesheet">
-    <link href="../../../css/main.css" rel="stylesheet">
-    <link id="../../../css-preset" href="../../../css/presets/preset1.css" rel="stylesheet">
-    <link href="../../../css/responsive.css" rel="stylesheet">
+    <link href="../../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../../css/animate.min.css" rel="stylesheet">
+    <link href="../../../../css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../../css/lightbox.css" rel="stylesheet">
+    <link href="../../../../css/main.css" rel="stylesheet">
+    <link id="../../../../css-preset" href="../../../../css/presets/preset1.css" rel="stylesheet">
+    <link href="../../../../css/responsive.css" rel="stylesheet">
 
-    <link href="../../css/navcolor.css" rel="stylesheet">
+    <link href="../../../css/navcolor.css" rel="stylesheet">
 
-    <link href="../../css/tablas.css" rel="stylesheet">
-    <link href="../../css/Buscador.css" rel="stylesheet">
+    <link href="../../../css/tablas.css" rel="stylesheet">
+    <link href="../../../css/Buscador.css" rel="stylesheet">
 
 
     <!--[if lt IE 9]>
@@ -131,7 +131,7 @@ function consultasall($consultaall)
           <![endif]-->
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-    <link rel="shortcut icon" href="../../../images">
+    <link rel="shortcut icon" href="../../../../images">
 </head>
 
 <body>
@@ -144,13 +144,13 @@ function consultasall($consultaall)
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../../../index.php">
-                    <h1><img class="img-responsive" src="../../../images/weblinenav.png" alt="logo"></h1>
+                <a class="navbar-brand" href="../../../../index.php">
+                    <h1><img class="img-responsive" src="../../../../images/weblinenav.png" alt="logo"></h1>
                 </a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li id="despintar" class="scroll active"><a href="../../../index.php#home">Inicio Webline</a></li>
+                    <li id="despintar" class="scroll active"><a href="../../../../index.php#home">Inicio Webline</a></li>
                     <li id="pintar" class="scroll"><a href="#">Reservas misas</a></li>
                     <li class="scroll"><a href="HistorialDeUsuarios.php">Usuarios registrados</a></li>
                     <li class="scroll"><a href="Bloqueo.php">Bloquear fechas y horas</a></li>
@@ -161,7 +161,7 @@ function consultasall($consultaall)
     <!--/main-nav-->
 
     <div class="div_table">
-        <p>Usuario: <?php printf($usuariosession) ?> <a href="cerrarsesion.php">Cerrar sesión</a></p>
+        <p>Usuario: <?php printf($usuariosession) ?> <a href="../model/cerrarsesion.php">Cerrar sesión</a></p>
         <h1>Reservas Parroquia San Norberto</h1>
         <table>
             <thead class="buscador">
@@ -215,7 +215,7 @@ function consultasall($consultaall)
                             <td id="hora"><input type="text" name="hour" value=<?php echo $row['hora'] ?> readonly></td>
                             <td id="temperature"><input type="text" name="temperature" value=<?php echo $row['temperatura'] ?> readonly pattern="[0.0-9.0]"></td>
                             <td> <a href="ActualizarTemperatura.php?id=<?php echo $row['id']; ?>">editar</a></td>
-                            <td> <a href="Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">borrar</a></td>
+                            <td> <a href="../model/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">borrar</a></td>
                         </tr>
                     <?php } ?>
                 </form>
@@ -237,7 +237,7 @@ function consultasall($consultaall)
         <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
             <div class="container text-center">
                 <div class="footer-logo">
-                    <a href="../../../index.php"><img class="img-responsive" src="../../../images/185.png" alt=""></a>
+                    <a href="/webline/index.php"><img class="img-responsive" src="../../../../images/185.png" alt=""></a>
                 </div>
                 <div class="social-icons">
                     <ul>

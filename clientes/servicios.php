@@ -44,7 +44,7 @@
         <div class="iglesias">
             <h3 class="tittleservicios">Iglesias y Parroquias</h3>
             <div class="btn-selection">
-                <a class="seleccionservicios" href="iglesia-san-norberto/login/login.php">Parroquia San Norberto</a>
+                <a class="seleccionservicios" href="iglesia-san-norberto/login/view/login.php">Parroquia San Norberto</a>
             </div>
         </div>
         <div class="restaurantes">

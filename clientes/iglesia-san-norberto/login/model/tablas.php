@@ -1,7 +1,7 @@
 <?php
 
 
-include("../../db/con_db.php");
+include("../../../db/con_db.php");
 session_start();
 
 
@@ -17,14 +17,14 @@ if (isset($_POST['entrar'])) {
 
         if (($filas) >= 1) {
             $_SESSION['user']=$user;
-            header("Location: HistorialDeUsuarios.php");
+            header("Location: ../view/HistorialDeUsuarios.php");
         } else {
-            header("Location: login.php");
+            header("Location: ../view/login.php");
         }
     } else {
-        header("Location: login.php");
+        header("Location: ../login.php");
     }
 } elseif (!isset($_POST['entrar'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
 ?>

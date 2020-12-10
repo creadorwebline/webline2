@@ -12,8 +12,8 @@ if(isset($_POST["actualizar"])){
 
 
 function actualizar($tempe,$id,$nom){
-	include("../../db/con_db.php");
-	mensaje("La actualizacion de ".$nom." fue exitosa","tablasmisas.php");
+	include("../../../db/con_db.php");
+	mensaje("La actualizacion de ".$nom." fue exitosa","../view/tablasmisas.php");
 	$actualizacion="UPDATE horarios SET temperatura ='$tempe' WHERE id ='$id'";
 	$result = mysqli_query($conex,$actualizacion);
 }
