@@ -5,6 +5,11 @@
     <?php
     include('header.html');
     ?>
+    <title>Webline - Página oficial</title>
+    <!--wp-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--/wp-->
 </head>
 <!--/head-->
 
