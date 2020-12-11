@@ -1,5 +1,5 @@
 <?php
-require('../../../../fpdf/fpdf.php');
+require($_SERVER['DOCUMENT_ROOT'].'/webline/fpdf/fpdf.php');
 
 class PDF extends FPDF
 {
@@ -38,7 +38,7 @@ function Footer()
     $this->Cell(0,10,'Page '.$this->PageNo().'/{nb}',0,0,'C');
 }
 
-require '/clientes/db/con_db.php';
+require '../../../db/con_db.php';
 // Creación del objeto de la clase heredada
 $sql =  $_GET["sql"];
 if($sql==null){

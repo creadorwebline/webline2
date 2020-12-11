@@ -174,7 +174,8 @@ function consultasall($consultaall)
                             <td id="hora"><input type="text" name="hour" value=<?php echo $row['hora'] ?> readonly></td>
                             <td id="temperature"><input type="text" name="temperature" value=<?php echo $row['temperatura'] ?> readonly pattern="[0.0-9.0]"></td>
                             <td> <a href="ActualizarTemperatura.php?id=<?php echo $row['id']; ?>">editar</a></td>
-                            <td> <a href="../model/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">borrar</a></td>
+                            <td> <a href="../../../model/iglesia-san-norberto/login/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">borrar</a></td>
+                            
                         </tr>
                     <?php } ?>
                 </form>

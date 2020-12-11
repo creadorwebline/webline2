@@ -32,9 +32,9 @@ include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/model/iglesia-san-norberto/
 
     <p>Usuario: <?php printf($usuariosession) ?> <a href="../../../model/iglesia-san-norberto/login/cerrarsesion.php">Cerrar sesión</a></p>
     <div id="bloqueo">
-        <h1>Bienvenido aquí puede bloquear fechas</h1>
+        <h1>Bienvenido aquí podrá realizar el bloqueo de fechas</h1>
 
-        <form method="post" action="../model/Logicabloqueo.php">
+        <form method="post" action="../../../model/iglesia-san-norberto/login/Logicabloqueo.php">
             <div id="bloqueobox">
                 <p>seleccione la fecha que quiere bloquear</p>
                 <input type="date" placeholder="Fecha-registro" name="fecha" required>
@@ -82,7 +82,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/model/iglesia-san-norberto/
                 </thead>
 
                 <tbody>
-                    <form id="temperatura" method="POST" action="../model/Borrarregistro.php">
+                    <form id="temperatura" method="POST" action="../../../model/iglesia-san-norberto/login/Borrarregistro.php">
                         <?php
                         date_default_timezone_set("America/Bogota");
                         $consulta = "SELECT * FROM bloqueofechas";
@@ -91,7 +91,7 @@ include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/model/iglesia-san-norberto/
                             <tr>
                                 <td id="name"><input id="01" type="text" name="nombreH" value="<?php echo $row['fechabloqueada'] ?>" readonly></td>
                                 <td id="name"><input id="01" type="text" name="nombreH" value="<?php echo $row['horabloqueada'] ?>" readonly></td>
-                                <td id="borrar"><a href="../model/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=bloqueofechas">eliminar</a></td>
+                                <td id="borrar"><a href="../../../model/iglesia-san-norberto/login/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=bloqueofechas">eliminar</a></td>
                             </tr>
                         <?php } ?>
                     </form>

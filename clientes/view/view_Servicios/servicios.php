@@ -27,7 +27,8 @@
         <div class="iglesias">
             <h3 class="tittleservicios">Iglesias y Parroquias</h3>
             <div class="btn-selection">
-                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/login/login.php">Parroquia San Norberto</a>
+                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/login/login.php">Parroquia San Norberto - Administrativos</a>
+                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/registro-horarios/registroDeUsuario/Registro.php">Parroquia San Norberto - Registro y reservas</a>
             </div>
         </div>
     </div>

@@ -22,7 +22,7 @@
     <section class="container-login">
         <div class="head">
             <h1 class="tittle">Bienvenido a la Parroquia San Norberto</h1>
-            <img src="../img/fondo.jpg">
+            <img src="img/horarios.jpeg">
             <h3>LOS DÍAS 31 Y 24 DE DICIEMBRE DE 2020 HABRÁ EUCARISTÍA A LAS 8:00 PM</h3>
         </div>
 

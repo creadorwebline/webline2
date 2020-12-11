@@ -10,10 +10,10 @@ if(isset($_POST["actualizar"])){
 
 }
 
-
 function actualizar($tempe,$id,$nom){
-	include("/clientes/db/con_db.php");
-	mensaje("La actualizacion de ".$nom." fue exitosa","../view/tablasmisas.php");
+	include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+	mensaje("La actualizacion de ".$nom." fue exitosa","../../../view/vew_iglesiaSanNorberto/login/reservasMisas.php");
+	
 	$actualizacion="UPDATE horarios SET temperatura ='$tempe' WHERE id ='$id'";
 	$result = mysqli_query($conex,$actualizacion);
 }
