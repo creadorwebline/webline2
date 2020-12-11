@@ -31,7 +31,8 @@ if ($usuariosession) {
 
                 <h1 class="tittlelogin">Bienvenido a la Parroquia San Norberto</h1>
                 <div class="inputs">        
-                    <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php?user=admin" method="POST">
+                    <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php" method="POST">
+                    
                         <input type="text" name="user" placeholder="Usuario" required pattern="[A-Za-z0-9 ]+">
                         <input type="password" name="password" placeholder="contraseña" required pattern="[A-Za-z0-9*#$&]+">
                         <input class="inputbtn" type="submit" name="entrar" value="Entrar">
