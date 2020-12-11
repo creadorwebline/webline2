@@ -16,14 +16,13 @@ if ($usuariosession) {
     <?php
     include($_SERVER['DOCUMENT_ROOT'].'/webline/header.html');
     ?>
-    <link href="css/login.css" rel="stylesheet">
+    <link href="../login/css/login.css" rel="stylesheet">
 </head>
 <!--/head-->
 
 <body>
-
     <?php
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/navbarr.html');
+    include('../registro-horarios/navbarr.html');
     ?>
     <div class="container-login">
         <div class="space">
@@ -31,7 +30,8 @@ if ($usuariosession) {
 
                 <h1 class="tittlelogin">Bienvenido a la Parroquia San Norberto</h1>
                 <div class="inputs">        
-                    <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php?user=admin" method="POST">
+                    <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php?user=visitante" method="POST">
+                    
                         <input type="text" name="user" placeholder="Usuario" required pattern="[A-Za-z0-9 ]+">
                         <input type="password" name="password" placeholder="contraseña" required pattern="[A-Za-z0-9*#$&]+">
                         <input class="inputbtn" type="submit" name="entrar" value="Entrar">
