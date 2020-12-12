@@ -21,7 +21,7 @@ if (isset($_POST['entrar'])) {
                 }
                 break;
             case "visitante":
-                $query = "SELECT id FROM dato WHERE CC = '$user' AND contraseña = '$pass'";
+                $query = "SELECT id FROM dato WHERE CC = '$user' AND contrasena = '$pass'";
                 //$querypw = "SELECT passwordt FROM logint WHERE usert = '$user' AND passwordt = '$pass'";
                 $result = mysqli_query($conex, $query);
                 $filas = mysqli_num_rows($result);

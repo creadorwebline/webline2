@@ -32,7 +32,7 @@ function existeUsuario($cedulaU){
 }
 function ingresarUsuario($uNombre, $uApellido,$uCedula,$uTelefono,$uFecha){
 	include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
-	$query = "INSERT INTO dato(nombre,apellido,CC,tel,fecha,contraseña) VALUES ('$uNombre','$uApellido','$uCedula','$uTelefono','$uFecha','$uCedula')";
+	$query = "INSERT INTO dato(nombre,apellido,CC,tel,fecha,contrasena) VALUES ('$uNombre','$uApellido','$uCedula','$uTelefono','$uFecha','$uCedula')";
 	$result = mysqli_query($conex, $query);
 	mensaje("Su ingreso fue exitoso","/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva");
 }
