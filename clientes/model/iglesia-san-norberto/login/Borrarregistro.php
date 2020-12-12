@@ -1,5 +1,6 @@
 <?php
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
 session_start();
 $usuariosession = $_SESSION['user'];
 if (!$usuariosession) {
@@ -10,15 +11,11 @@ $id = $_GET["id"];
 $tabla= $_GET["tabla"];
 $consulta = "DELETE FROM $tabla WHERE id=".$id;
 $result = mysqli_query($conex, $consulta);
+$mensajes = new EnvioDeMensaje();
 if(($result) && ($tabla=="bloqueofechas")){
-    mensaje("Fecha de bloqueo borrada con exito","../../../view/vew_iglesiaSanNorberto/login/Bloqueo.php");
+    $mensajes->mensaje("Fecha de bloqueo borrada con exito","../../../view/vew_iglesiaSanNorberto/login/Bloqueo.php");
 
 }else{
-    mensaje("Reserva borrada con exito","../../../view/vew_iglesiaSanNorberto/login/reservasMisas.php");
+    $mensajes->mensaje("Reserva borrada con exito","../../../view/vew_iglesiaSanNorberto/login/reservasMisas.php");
     
-}
-
-function mensaje($mesaje,$pagina){
-	header("Refresh: 0; URL=".$pagina);
-    echo "<script>alert('$mesaje');</script>";
 }

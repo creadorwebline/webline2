@@ -12,14 +12,11 @@ if(isset($_POST["actualizar"])){
 
 function actualizar($tempe,$id,$nom){
 	include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
-	mensaje("La actualizacion de ".$nom." fue exitosa","../../../view/vew_iglesiaSanNorberto/login/reservasMisas.php");
+	include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
+	$mensajes = new EnvioDeMensaje();
+	$mensajes->mensaje("La actualizacion de ".$nom." fue exitosa","../../../view/vew_iglesiaSanNorberto/login/reservasMisas.php");
 	
 	$actualizacion="UPDATE horarios SET temperatura ='$tempe' WHERE id ='$id'";
 	$result = mysqli_query($conex,$actualizacion);
-}
-
-function mensaje($mesaje,$pagina){
-	header("Refresh: 0; URL=".$pagina);
-    echo "<script>alert('$mesaje');</script>";
 }
 ?>

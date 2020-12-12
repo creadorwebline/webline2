@@ -1,9 +1,11 @@
 <?php
 
 include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
 //include("timephp/time.php");
 
 date_default_timezone_set("America/Bogota");
+$mensajes = new EnvioDeMensaje();
 if (isset($_POST["enviarHorario"])) {
     if (
         strlen($_POST['nombre']) >= 1 && strlen($_POST['cedula']) >= 1 && strlen($_POST['fecha']) >= 1 &&
@@ -24,10 +26,10 @@ if (isset($_POST["enviarHorario"])) {
             $result = mysqli_query($conex, $consulta);
             $row = mysqli_fetch_array($result);
             if ($row>=1) { 
-                mensaje("Este dia no habrá misa a las ".$hora, $completarRuta);
+                $mensajes->mensaje("Este dia no habrá misa a las ".$hora, $completarRuta);
             } else {
                 if (((int)$horaActual > (int)$hora) && ($diaActual == $fecha)) {
-                    mensaje("Esta misa ya ha pasado o esta en curso", $completarRuta);
+                    $mensajes->mensaje("Esta misa ya ha pasado o esta en curso", $completarRuta);
                 } else {
                     $nombre = trim($_POST['nombre']);
                     $apellido = trim($_POST['apellido']);
@@ -44,12 +46,12 @@ if (isset($_POST["enviarHorario"])) {
                                 $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
                                     insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                    mensaje("Su reserva fue exitosa", $completarRuta);
+                                    $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                 } else {
-                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
+                                    $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                 }
                             } else {
-                                mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
+                                $mensajes->mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                             }
                         }else{
                             if ($hora == "7:30" || $hora == "18:30") {
@@ -57,15 +59,15 @@ if (isset($_POST["enviarHorario"])) {
                                     $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                     if ($cantRegistros < 1) {
                                         insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                        mensaje("Su reserva fue exitosa", $completarRuta);
+                                        $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                     } else {
-                                        mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
+                                        $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                     }
                                 } else {
-                                    mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
+                                    $mensajes->mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                                 }
                             } else {
-                                mensaje("Hora no establecida de lunes a sabado", $completarRuta);
+                                $mensajes->mensaje("Hora no establecida de lunes a sabado", $completarRuta);
                             }
                         }                       
                     } else {
@@ -74,21 +76,21 @@ if (isset($_POST["enviarHorario"])) {
                                 $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
                                     insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                    mensaje("Su reserva fue exitosa", $completarRuta."FormularioMisas.php");
+                                    $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                 } else {
-                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta."FormularioMisas.php");
+                                    $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                 }
                             } else {
-                                mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta."FormularioMisas.php");
+                                $mensajes->mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                             }
                         } else {
-                            mensaje("Hora no establecida para el domingo o festividades decembrinas", $completarRuta."FormularioMisas.php");
+                            $mensajes->mensaje("Hora no establecida para el domingo o festividades decembrinas", $completarRuta);
                         }
                     }
                 }
             }
         } else {
-            mensaje("Usted no se encuentra registrado, por favor registrese", "../registro-horarios/registros-san-norberto/Registro.php");
+            $mensajes->mensaje("Usted no se encuentra registrado, por favor registrese", "/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/registroDeUsuario/Registro.php");
         }
     }
 }
@@ -103,11 +105,6 @@ function registroPrevio($_uCedula)
     } else {
         return false;
     }
-}
-function mensaje($mensaje, $pagina)
-{
-    header("Refresh: 0; URL=" . $pagina);
-    echo "<script>alert('$mensaje');</script>";
 }
 function buscarPersonasCedula($fechaM, $horaM, $cedulaM)
 {
