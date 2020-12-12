@@ -1,0 +1,50 @@
+.cabecera {
+  width: 100%;
+  height: 50%;
+  margin-bottom: 50px;
+}
+.cuerpo {
+  width: 100%;
+  height: 50%;
+  margin-bottom: 50px;
+}
+.cerrarSesion {
+  width: 25%;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  float: left;
+}
+.cerrarSesion p{
+    font-size: 20px;
+}
+.tituloPerfil {
+  width: 55%;
+  text-align: center;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  float: left;
+}
+.tituloPerfil h1{
+    font-size: 30px;
+}
+.datosPersonales {
+  width: 30%;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  float: left;
+}
+
+.reporteReservas {
+  width: 50%;
+  margin-top: 40px;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  float: left;
+}
