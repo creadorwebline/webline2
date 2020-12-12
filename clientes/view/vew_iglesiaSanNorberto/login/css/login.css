@@ -16,6 +16,17 @@
     margin-right: auto;
 }
 
+.titulotipodeusuario{
+    text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.titulotipodeusuario h2{
+    color: #017fb5;
+}
+
 .tittlelogin {
     font-weight: 900;
     font-size: 30px;
@@ -46,12 +57,19 @@ input {
     margin-right: auto;
 }
 
+.inputs #nomostrar{
+    display: none;
+}
+
 @media screen and (max-width:768px) {
     .container-login {
         background-image: url(../img/fondo_san_norberto.jpg);
         background-repeat: no-repeat;
         background-position: center;
         background-size: 100%;
+    }
+    .container-login .titulotipodeusuario{
+        text-align: center;
     }
     .tittlelogin {
         font-weight: 600;
@@ -71,6 +89,17 @@ input {
         margin-left: auto;
         margin-right: auto;
     }
+
+    .titulotipodeusuario{
+        width:100%;
+        text-align:center;
+    }
+
+    .titulotipodeusuario h2{
+        font-size: 14px;
+        color: #017fb5;
+    }
+
     input {
         width: 200px;
         margin: 5px;

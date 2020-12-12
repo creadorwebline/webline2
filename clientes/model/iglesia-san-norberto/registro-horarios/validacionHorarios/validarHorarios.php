@@ -49,7 +49,7 @@ if (isset($_POST["enviarHorario"])) {
                                     mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                 }
                             } else {
-                                mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
+                                mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                             }
                         }else{
                             if ($hora == "7:30" || $hora == "18:30") {
@@ -62,7 +62,7 @@ if (isset($_POST["enviarHorario"])) {
                                         mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                     }
                                 } else {
-                                    mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
+                                    mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                                 }
                             } else {
                                 mensaje("Hora no establecida de lunes a sabado", $completarRuta);
@@ -79,7 +79,7 @@ if (isset($_POST["enviarHorario"])) {
                                     mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta."FormularioMisas.php");
                                 }
                             } else {
-                                mensaje("No hay cupos suficientes para la hora " . $hora . " fecha: " . $fecha, $completarRuta."FormularioMisas.php");
+                                mensaje("Lo sentimos no hay cupos para la hora " . $hora . " fecha: " . $fecha, $completarRuta."FormularioMisas.php");
                             }
                         } else {
                             mensaje("Hora no establecida para el domingo o festividades decembrinas", $completarRuta."FormularioMisas.php");

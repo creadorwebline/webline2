@@ -27,13 +27,13 @@
         <div class="iglesias">
             <h3 class="tittleservicios">Iglesias y Parroquias</h3>
             <div class="btn-selection">
-                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/login/login">Parroquia San Norberto - Administrativos</a>
+                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/login/login?tipo=admin">Parroquia San Norberto - Administrativos</a>
             </div>
             <div class="btn-selection">
                 <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/registro-horarios/registroDeUsuario/Registro">Parroquia San Norberto - Registro y reservas</a>
             </div>
             <div class="btn-selection">
-                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios">Parroquia San Norberto - Visitantes</a>
+                <a class="seleccionservicios" href="../vew_iglesiaSanNorberto/login/login?tipo=visitante">Parroquia San Norberto - Visitantes</a>
             </div>
         </div>
     </div>
