@@ -8,9 +8,24 @@ if (!$usuariosession) {
     die();
 } else {
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
     $usuario = $_SESSION['userV'];
     $query = "SELECT * FROM horarios WHERE cedula='$usuario'";
     $result = mysqli_query($conex, $query);
+
+    $visitante = new Visitante();
+    $visitante->setNombre(consulta("nombre",$usuario));
+    $visitante->setApellido(consulta("apellido",$usuario));
+    $visitante->setCedula(consulta("CC",$usuario));
+    $visitante->setFecha(date("d-m-y",strtotime(consulta("fecha",$usuario))));
+
+}
+function consulta($campo,$usuario){
+    include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+    $query = "SELECT ".$campo." FROM dato WHERE CC='$usuario'";
+    $result = mysqli_query($conex, $query);
+    $fila = $result->fetch_assoc();
+    return $fila[$campo];
 }
 ?>
 <!DOCTYPE html>
@@ -45,10 +60,10 @@ if (!$usuariosession) {
         <div class="cuerpo">
             <div class="datosPersonales">
                 <h3>Datos personales del usuario</h3>
-                <p>Nombre: </p>
-                <p>Apellido: </p>
-                <p>CC/ID: </p>
-                <p>Cuenta creada el: </p>
+                <p>Nombre:  <?php printf($visitante->getNombre()) ?></p></p>
+                <p>Apellido: <?php printf($visitante->getApellido()) ?></p>
+                <p>CC/ID: <?php printf($visitante->getCedula()) ?></p>
+                <p>Cuenta creada el: <?php printf($visitante->getFecha()) ?></p>
             </div>
             <div class="reporteReservas">
                 <table>
