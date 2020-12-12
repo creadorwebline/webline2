@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <?php
+<?php
     include("../navbarr.html");
     ?>
     
@@ -21,7 +21,7 @@
         <a href="../reservaMisa/formularioDeReserva.php"><h3 class="btnToReservas">Si ya se registró y desea reservar cupo para una misa de clic <u><i>AQUí</i></u></h3></a>
         <h3>Si no está registrado en la Parroquia San Norberto, por favor regístrese aquí</h3>
         <div class="registro">
-            <form action="IngresoMisasUsuarios.php" method="POST">
+            <form action="/webline/clientes/model/iglesia-san-norberto/registro-horarios/registroDeUsuario/registroDeUsuario.php" method="POST">
                 <div class="container-registros">
                     <div class="container-registros-gray">
                         <p>REGISTRE SUS DATOS</p>

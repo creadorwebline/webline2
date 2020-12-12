@@ -27,9 +27,9 @@ if (isset($_POST['entrar'])) {
                 $filas = mysqli_num_rows($result);
                 if (($filas) >= 1) {
                     $_SESSION['userV']=$user;
-                    header("Location: ../../../view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios.php");     
+                    header("Location: ../../../view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios?usuario=".$user);     
                 } else {
-                    header("Location: ../../../view/vew_iglesiaSanNorberto/perfil-usuarios/LoginUsuarios.php");
+                    header("Location: ../../../view/vew_iglesiaSanNorberto/perfil-usuarios/LoginUsuarios");
                 }
                 break;
         }

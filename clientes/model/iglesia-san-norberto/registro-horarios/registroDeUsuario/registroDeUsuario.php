@@ -1,5 +1,5 @@
 <?php
-include("/clientes/db/con_db.php");
+include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
 
 date_default_timezone_set("America/Bogota");
 if(isset($_POST["enviar"])){
@@ -11,7 +11,7 @@ if(isset($_POST["enviar"])){
 		$telefonoUsurio = trim($_POST["telefono"]);
 		$fechaDeIngreso = date("Y-m-d");
 		if(existeUsuario($cedulaUsurio)){
-			mensaje("Este Usuario ya existe","Registro.php");
+			mensaje("Este Usuario ya existe","/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva");
 		}else{
 			ingresarUsuario($nombreUsurio,$apellUsuario,$cedulaUsurio,$telefonoUsurio,$fechaDeIngreso);
 		}
@@ -19,7 +19,7 @@ if(isset($_POST["enviar"])){
 }
 
 function existeUsuario($cedulaU){
-	include("../../../db/con_db.php");
+	include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
     $query = "SELECT * FROM dato WHERE CC = '$cedulaU'";
     $result = mysqli_query($conex, $query);
     $filas = mysqli_num_rows($result);
@@ -31,10 +31,10 @@ function existeUsuario($cedulaU){
 
 }
 function ingresarUsuario($uNombre, $uApellido,$uCedula,$uTelefono,$uFecha){
-	include("../../../db/con_db.php");
-	$query = "INSERT INTO dato(nombre,apellido,CC,tel,fecha) VALUES ('$uNombre','$uApellido','$uCedula','$uTelefono','$uFecha')";
+	include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
+	$query = "INSERT INTO dato(nombre,apellido,CC,tel,fecha,contraseña) VALUES ('$uNombre','$uApellido','$uCedula','$uTelefono','$uFecha','$uCedula')";
 	$result = mysqli_query($conex, $query);
-	mensaje("Su ingreso fue exitoso","../FormularioMisas.php");
+	mensaje("Su ingreso fue exitoso","/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva");
 }
 function mensaje($mensaje,$pagina)
 {

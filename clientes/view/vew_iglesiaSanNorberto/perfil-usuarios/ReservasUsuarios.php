@@ -2,10 +2,15 @@
 //IMPORTANT!!!!!
 error_reporting(0);
 //IMPORTANT!!!!!
-$usuariosession = $_SESSION['user'];
-if ($usuariosession) {
-    header("Location: registroDeUsuarios.php");
+$usuariosession = $_SESSION['userV'];
+if (!$usuariosession) {
+    header("Location: LoginUsuarios");
     die();
+}else{
+    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
+    $usuario = $_GET['usuario'];
+    $query = "SELECT * FROM horarios WHERE cedula='$usuario'";
+    $result = mysqli_query($conex, $query);
 }
 ?>
 <!DOCTYPE html>
@@ -21,26 +26,37 @@ if ($usuariosession) {
 <!--/head-->
 
 <body>
-
-    <?php
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/navbarr.html');
+<?php
+    include("../registro-horarios/navbarr.html");
     ?>
-    <div class="container-login">
-        <div class="space">
-            <div class="login">
+<div class="div_table">
+        <p>Usuario: <?php printf($usuariosession) ?> <a href="../../../model/iglesia-san-norberto/login/cerrarsesion.php">Cerrar sesión</a></p>
+        <h1>Reservas Parroquia San Norberto</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th id="date">Fecha-reservada</th>
+                </tr>
+            </thead>
 
-                <h1 class="tittlelogin">Bienvenido a la Parroquia San Norberto</h1>
-                <div class="inputs">        
-                    <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php" method="POST">
-                    
-                        <input type="text" name="user" placeholder="Usuario" required pattern="[A-Za-z0-9 ]+">
-                        <input type="password" name="password" placeholder="contraseña" required pattern="[A-Za-z0-9*#$&]+">
-                        <input class="inputbtn" type="submit" name="entrar" value="Entrar">
-                    </form>
-                </div>
-            </div>
-        </div>
+            <tbody>
+                <form id="temperatura" method="POST" action="ActualizarTemperatura.php">
+                    <?php
+                    $numeracion = 0;
+                    date_default_timezone_set("America/Bogota");
+                    while ($row = mysqli_fetch_array($result)) {
+                        $numeracion = $numeracion + 1; ?>
+                        <tr>
+                            <td id="date">
+                                <input type="text" name="fecha" value=<?php echo $row['fecha'] ?> readonly>
+                            </td>
+                            
+                        </tr>
+                    <?php } ?>
+                </form>
+            </tbody>
 
+        </table>
 
     </div>
     <!--/#login-->

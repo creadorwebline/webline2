@@ -1,13 +1,4 @@
-<?php session_start(); 
-//IMPORTANT!!!!!
-error_reporting(0);
-//IMPORTANT!!!!!
-$usuariosession = $_SESSION['user'];
-if ($usuariosession) {
-    header("Location: registroDeUsuarios.php");
-    die();
-}
-?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -21,8 +12,9 @@ if ($usuariosession) {
 <!--/head-->
 
 <body>
-    <?php
-    include('../registro-horarios/navbarr.html');
+
+<?php
+    include("../registro-horarios/navbarr.html");
     ?>
     <div class="container-login">
         <div class="space">
@@ -32,7 +24,7 @@ if ($usuariosession) {
                 <div class="inputs">        
                     <form action="../../../model/iglesia-san-norberto/login/verificarLogin.php?user=visitante" method="POST">
                     
-                        <input type="text" name="user" placeholder="Usuario" required pattern="[A-Za-z0-9 ]+">
+                        <input type="text" name="user" placeholder="Cedula" required pattern="[A-Za-z0-9 ]+">
                         <input type="password" name="password" placeholder="contraseña" required pattern="[A-Za-z0-9*#$&]+">
                         <input class="inputbtn" type="submit" name="entrar" value="Entrar">
                     </form>

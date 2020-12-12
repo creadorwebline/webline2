@@ -1,6 +1,6 @@
 <?php
 
-include("/clientes/db/con_db.php");
+include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
 //include("timephp/time.php");
 
 date_default_timezone_set("America/Bogota");
@@ -10,6 +10,7 @@ if (isset($_POST["enviarHorario"])) {
         strlen($_POST['apellido']) >= 1 && strlen($_POST['telefono']) >= 1 && strlen($_POST['hora'])
     ) {
         if (registroPrevio($_POST['cedula'])) {
+            $completarRuta="/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva";
             $horaActual = date("G:i");
             $hora = trim($_POST['hora']);
             $diaActual = date("Y-m-d");
@@ -19,15 +20,14 @@ if (isset($_POST["enviarHorario"])) {
             echo $fecha;//////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////
             //verifica fecha
-            $consulta = "SELECT * FROM bloqueofechas WHERE '$fecha' = fechabloqueada AND horabloqueada = '$hora'";
+            $consulta = "SELECT * FROM bloqueofechas WHERE fechabloqueada='$fecha' AND horabloqueada = '$hora'";
             $result = mysqli_query($conex, $consulta);
             $row = mysqli_fetch_array($result);
             if ($row>=1) { 
-                
-                mensaje("Este dia no habrá misa a las ".$hora, "FormularioMisas.php");
+                mensaje("Este dia no habrá misa a las ".$hora, $completarRuta);
             } else {
                 if (((int)$horaActual > (int)$hora) && ($diaActual == $fecha)) {
-                    mensaje("Esta misa ya ha pasado o esta en curso", "FormularioMisas.php");
+                    mensaje("Esta misa ya ha pasado o esta en curso", $completarRuta);
                 } else {
                     $nombre = trim($_POST['nombre']);
                     $apellido = trim($_POST['apellido']);
@@ -44,12 +44,12 @@ if (isset($_POST["enviarHorario"])) {
                                 $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
                                     insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                    mensaje("Su reserva fue exitosa", "FormularioMisas.php");
+                                    mensaje("Su reserva fue exitosa", $completarRuta);
                                 } else {
-                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, "FormularioMisas.php");
+                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                 }
                             } else {
-                                mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
+                                mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                             }
                         }else{
                             if ($hora == "7:30" || $hora == "18:30") {
@@ -57,15 +57,15 @@ if (isset($_POST["enviarHorario"])) {
                                     $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                     if ($cantRegistros < 1) {
                                         insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                        mensaje("Su reserva fue exitosa", "FormularioMisas.php");
+                                        mensaje("Su reserva fue exitosa", $completarRuta);
                                     } else {
-                                        mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, "FormularioMisas.php");
+                                        mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
                                     }
                                 } else {
-                                    mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
+                                    mensaje("Cupos reservados para la hora " . $hora . " fecha: " . $fecha, $completarRuta);
                                 }
                             } else {
-                                mensaje("Hora no establecida de lunes a sabado", "FormularioMisas.php");
+                                mensaje("Hora no establecida de lunes a sabado", $completarRuta);
                             }
                         }                       
                     } else {
@@ -74,15 +74,15 @@ if (isset($_POST["enviarHorario"])) {
                                 $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
                                     insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
-                                    mensaje("Su reserva fue exitosa", "FormularioMisas.php");
+                                    mensaje("Su reserva fue exitosa", $completarRuta."FormularioMisas.php");
                                 } else {
-                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, "FormularioMisas.php");
+                                    mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta."FormularioMisas.php");
                                 }
                             } else {
-                                mensaje("No hay cupos suficientes para la hora " . $hora . " fecha: " . $fecha, "FormularioMisas.php");
+                                mensaje("No hay cupos suficientes para la hora " . $hora . " fecha: " . $fecha, $completarRuta."FormularioMisas.php");
                             }
                         } else {
-                            mensaje("Hora no establecida para el domingo o festividades decembrinas", "FormularioMisas.php");
+                            mensaje("Hora no establecida para el domingo o festividades decembrinas", $completarRuta."FormularioMisas.php");
                         }
                     }
                 }
@@ -94,7 +94,7 @@ if (isset($_POST["enviarHorario"])) {
 }
 function registroPrevio($_uCedula)
 {
-    include("../../db/con_db.php");
+    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
     $query = "SELECT * FROM dato WHERE CC ='$_uCedula'";
     $result = mysqli_query($conex, $query);
     $filas = mysqli_num_rows($result);
@@ -111,7 +111,7 @@ function mensaje($mensaje, $pagina)
 }
 function buscarPersonasCedula($fechaM, $horaM, $cedulaM)
 {
-    include("../../db/con_db.php");
+    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
     $query = "SELECT * FROM horarios WHERE fecha = '$fechaM' AND hora='$horaM'AND cedula='$cedulaM'";
     $result = mysqli_query($conex, $query);
     $filas = mysqli_num_rows($result);
@@ -119,7 +119,7 @@ function buscarPersonasCedula($fechaM, $horaM, $cedulaM)
 }
 function cantidadDePersonas($fechaM, $horaM)
 {
-    include("../../db/con_db.php");
+    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
     $query = "SELECT * FROM horarios WHERE fecha = '$fechaM' AND hora='$horaM'";
     $result = mysqli_query($conex, $query);
     $filas = mysqli_num_rows($result);
@@ -127,7 +127,7 @@ function cantidadDePersonas($fechaM, $horaM)
 }
 function insertaraLaMisa($nombreP, $apellidoP, $cedulaP, $telefonoP, $fechaP, $horaP)
 {
-    include("../../db/con_db.php");
+    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
     $query = "INSERT INTO horarios(nombre,apellido,cedula,telefono,fecha,hora) VALUES ('$nombreP','$apellidoP', '$cedulaP','$telefonoP','$fechaP','$horaP')";
     $result = mysqli_query($conex, $query);
 }

@@ -27,7 +27,7 @@
         </div>
 
         <div class="space">
-            <form action="Horarios.php" method="POST">
+            <form action="/webline/clientes/model/iglesia-san-norberto/registro-horarios/validacionHorarios/validarHorarios.php" method="POST">
                 <div class="container-datos">
                     <div class="containerone">
                         <div class="item">
