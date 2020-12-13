@@ -31,20 +31,8 @@
                 <div class="container-datos">
                     <div class="containerone">
                         <div class="item">
-                            <h3>Nombre</h3>
-                            <input placeholder="Nombre" type="text" name="nombre" required minlength="3" pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+"">
-                        </div>
-                        <div class=" item">
-                            <h3>Apellido</h3>
-                            <input placeholder="Apellido" type="text" name="apellido" required minlength="3" pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
-                        </div>
-                        <div class="item">
                             <h3>Cedula</h3>
                             <input placeholder="Cedula" required minlength="6" required maxlength="11" min="999999" type="text" name="cedula" pattern="[0-9]+">
-                        </div>
-                        <div class="item">
-                            <h3>Teléfono </h3>
-                            <input placeholder="Telefono" type="text" name="telefono" required minlength="7" required maxlength="10" pattern="[0-9]+">
                         </div>
                         <div class="item">
                             <h3>Fecha a reservar</h3>
@@ -54,7 +42,6 @@
                     </div>
 
                     <div class="horarios">
-
                         <div class="hora">
                             <div class="htittle">
                                 <h3>Seleccione una hora</h3>

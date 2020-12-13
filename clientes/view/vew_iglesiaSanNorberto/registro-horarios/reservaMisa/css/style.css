@@ -6,7 +6,8 @@
   text-align: center;
 }
 .head h1 {
-  color: rgb(78, 78, 78);
+  color: #017fb5;
+  text-shadow: 2px 2px 2px rgb(78, 78, 78);
   font-size: 60px;
   margin-bottom: 50px;
 }
@@ -23,17 +24,25 @@
   margin-left: auto;
 }
 
-.regPrev{
+.container-datos {
+  width: 100%;
+}
+
+.regPrev {
   text-align: center;
 }
 
 .containerone {
-  padding-top: 10px;
-  margin: 25px;
+  height: 150px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
 }
 
 .containerone .item {
-  padding: 15px;
+  text-align: center;
+  width: 40%;
+  margin: 15px;
   float: left;
 }
 
@@ -48,22 +57,20 @@
 }
 
 .horarios {
-  padding-top: 10px;
-  margin: 25px;
+  width: 100%;
+  display: flex;
 }
 
-.horarios .htittle h3{
+.horarios .htittle h3 {
   text-align: center;
   color: #7e7d7d;
   font-size: 20px;
 }
 
-
 .horarios .hora {
   width: 40%;
   margin-right: auto;
   margin-left: auto;
-  margin-top: 50px;
 }
 
 .horarios .hora .item {

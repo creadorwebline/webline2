@@ -1,6 +1,7 @@
 @media (max-width: 767px) {
   .head h1 {
-    font-size: 20px;
+    font-size: 30px;
+    text-shadow: none;
   }
   .head img {
     width: 80%;
