@@ -31,8 +31,9 @@ if (!$usuariosession) {
     <?php
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/header.html');
     ?>
-    <link href="css/login.css" rel="stylesheet">
+    <!--<link href="css/login.css" rel="stylesheet">-->
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
 </head>
 <!--/head-->
 

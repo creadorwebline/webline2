@@ -103,4 +103,3 @@ if (isset($_POST["enviarHorario"])) {
         }
     }
 }
-?>

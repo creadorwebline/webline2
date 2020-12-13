@@ -22,6 +22,4 @@ class ReservaLogicaHorarios{
         $query = "INSERT INTO horarios(nombre,apellido,cedula,telefono,fecha,hora) VALUES ('$nombreP','$apellidoP', '$cedulaP','$telefonoP','$fechaP','$horaP')";
         $result = mysqli_query($conex, $query);
     }
-
 }
-?>
