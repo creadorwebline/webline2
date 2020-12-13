@@ -41,5 +41,10 @@ class VisitanteLogica{
         $result = mysqli_query($conex, $consulta);
         return $result;
     }
+    function ingresarUsuario($uNombre, $uApellido,$uCedula,$uTelefono,$uFecha){
+        include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
+        $query = "INSERT INTO dato(nombre,apellido,CC,tel,fecha,contrasena) VALUES ('$uNombre','$uApellido','$uCedula','$uTelefono','$uFecha','$uCedula')";
+        $result = mysqli_query($conex, $query);
+    }
 }
 ?>

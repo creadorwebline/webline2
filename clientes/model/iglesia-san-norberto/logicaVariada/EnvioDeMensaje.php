@@ -5,4 +5,3 @@ class EnvioDeMensaje{
         echo "<script>alert('$mesaje');</script>";
     }
 }
-?>
