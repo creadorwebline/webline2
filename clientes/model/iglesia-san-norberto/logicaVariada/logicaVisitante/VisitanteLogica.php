@@ -35,5 +35,11 @@ class VisitanteLogica{
             return false;
         }
     }
+    function eliminarUsuario($cc){
+        include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+        $consulta = "DELETE FROM dato WHERE CC=".$cc;
+        $result = mysqli_query($conex, $consulta);
+        return $result;
+    }
 }
 ?>
