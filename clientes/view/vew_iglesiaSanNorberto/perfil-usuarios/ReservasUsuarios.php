@@ -7,20 +7,22 @@ if (!$usuariosession) {
     header("Location: ../login/login");
     die();
 } else {
+    date_default_timezone_set("America/Bogota");
+    $fechahoy = date("Y-m-d");
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
+
     $usuario = $_SESSION['userV'];
-    $query = "SELECT * FROM horarios WHERE cedula='$usuario'";
+    $query = "SELECT * FROM horarios WHERE fecha >= '$fechahoy' AND cedula='$usuario'";
     $result = mysqli_query($conex, $query);
 
     $visitante = new Visitante();
     $consultar = new VisitanteLogica();
-    $visitante->setNombre($consultar->consulta("nombre",$usuario));
-    $visitante->setApellido($consultar->consulta("apellido",$usuario));
-    $visitante->setCedula($consultar->consulta("CC",$usuario));
-    $visitante->setFecha(date("d-m-y",strtotime($consultar->consulta("fecha",$usuario))));
-
+    $visitante->setNombre($consultar->consulta("nombre", $usuario));
+    $visitante->setApellido($consultar->consulta("apellido", $usuario));
+    $visitante->setCedula($consultar->consulta("CC", $usuario));
+    $visitante->setFecha(date("d-m-y", strtotime($consultar->consulta("fecha", $usuario))));
 }
 ?>
 <!DOCTYPE html>
@@ -46,7 +48,7 @@ if (!$usuariosession) {
             <div class="cerrarSesion">
                 <p>Usuario: <?php printf($usuariosession) ?> </p>
                 <p><a href="../../../model/iglesia-san-norberto/login/cerrarsesion.php">Cerrar sesión</a></p>
-                
+
             </div>
             <div class="tituloPerfil">
                 <h1>Perfil del Usuario</h1>
@@ -56,7 +58,8 @@ if (!$usuariosession) {
         <div class="cuerpo">
             <div class="datosPersonales">
                 <h3>Datos personales del usuario</h3>
-                <p>Nombre:  <?php printf($visitante->getNombre()) ?></p></p>
+                <p>Nombre: <?php printf($visitante->getNombre()) ?></p>
+                </p>
                 <p>Apellido: <?php printf($visitante->getApellido()) ?></p>
                 <p>CC/ID: <?php printf($visitante->getCedula()) ?></p>
                 <p>Cuenta creada el: <?php printf($visitante->getFecha()) ?></p>
@@ -69,6 +72,10 @@ if (!$usuariosession) {
                         <tr>
                             <th id="date">Registro de reservas realizadas por el usuario:</th>
                         </tr>
+                        <tr>
+                            <th id="date">FECHA</th>
+                            <th id="date">HORA</th>
+                        </tr>
                     </thead>
 
                     <tbody>
@@ -79,8 +86,12 @@ if (!$usuariosession) {
                             while ($row = mysqli_fetch_array($result)) {
                             ?>
                                 <tr>
-                                    <td id="date">
+                                    <td>
                                         <input type="text" name="fecha" value=<?php echo $row['fecha'] ?> readonly>
+                                    </td>
+                                    <td>
+                                        <input type="text" name="hora" value=<?php echo $row['hora'] ?> readonly>
+                                        <a href="../../../model/iglesia-san-norberto/login/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">cancelar</a>
                                     </td>
                                 </tr>
                             <?php } ?>
