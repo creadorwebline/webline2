@@ -91,7 +91,7 @@ if (!$usuariosession) {
                                     </td>
                                     <td>
                                         <input type="text" name="hora" value=<?php echo $row['hora'] ?> readonly>
-                                        <a href="../../../model/iglesia-san-norberto/login/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios">cancelar</a>
+                                        <a href="../../../model/iglesia-san-norberto/login/Borrarregistro.php?id=<?php echo $row['id']; ?>&tabla=horarios&sesion=visit">cancelar</a>
                                     </td>
                                 </tr>
                             <?php } ?>

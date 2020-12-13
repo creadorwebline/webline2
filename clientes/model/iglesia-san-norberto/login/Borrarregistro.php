@@ -6,12 +6,12 @@ session_start();
 $usuarioSession = null;
 $usuarioSessionVisitante=null;
 $redireccion = null;
-
-if(isset($_SESSION['user'])){
+$sesion = $_GET["sesion"];
+if(isset($_SESSION['user'])&&$sesion=="admin"){
     $usuarioSession = $_SESSION['user'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/login/reservasMisas";
     
-}elseif(isset($_SESSION['userV'])){
+}elseif(isset($_SESSION['userV'])&&$sesion=="visit"){
     $usuarioSessionVisitante = $_SESSION['userV'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios";
 }else{
