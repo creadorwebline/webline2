@@ -3,6 +3,9 @@
 include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
 
+include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
+
 date_default_timezone_set("America/Bogota");
 $mensajes = new EnvioDeMensaje();
 if (isset($_POST["enviarHorario"])) {
@@ -26,10 +29,19 @@ if (isset($_POST["enviarHorario"])) {
                 if (((int)$horaActual > (int)$hora) && ($diaActual == $fecha)) {
                     $mensajes->mensaje("Esta misa ya ha pasado o esta en curso", $completarRuta);
                 } else {
-                    $nombre = trim($_POST['nombre']);
-                    $apellido = trim($_POST['apellido']);
                     $cedula = trim($_POST['cedula']);
-                    $telefono = trim($_POST['telefono']);
+
+                    $consulta= new VisitanteLogica();
+                    $datosUsuario= new Visitante();
+
+                    $datosUsuario->setNombre($consulta->consulta("nombre",$cedula));
+                    $datosUsuario->setApellido($consulta->consulta("apellido",$cedula));
+                    $datosUsuario->setTelefono($consulta->consulta("tel",$cedula));
+
+                    $nombre = $datosUsuario->getNombre();
+                    $apellido = $datosUsuario->getApellido();
+                    $telefono = $datosUsuario->getTelefono();
+
                     $hora = trim($_POST['hora']);
                     $dia = strtotime($fecha);
                     $dia = date("N", $dia);
