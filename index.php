@@ -92,7 +92,7 @@
                         </div>
                         <div class="service-info">
                             <h3>Diseños y creaciones originales</h3>
-                            <p>Diseñamos y creamos lototipos, páginas web y mucho mas. Conforme a las necesidades de nuestros clientes <br>"Más información en nuestro portafolio"</p>
+                            <p>Diseñamos y creamos lototipos, páginas web y mucho mas, conforme a las necesidades de nuestros clientes."</p>
                         </div>
                     </div>
                     <div class="col-sm-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="550ms">
@@ -101,7 +101,7 @@
                         </div>
                         <div class="service-info">
                             <h3>Muchos más servicios</h3>
-                            <p>Prestamos servicios de senalización, bioseguridad y mucho más. Siempre teniendo en cuenta las necesidades y requerimientos del cliente</p>
+                            <p>Prestamos servicios con la mejor calidad posible. Siempre teniendo en cuenta las necesidades y requerimientos del cliente</p>
                         </div>
                     </div>
                 </div>
