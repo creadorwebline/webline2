@@ -2,17 +2,20 @@
 
 include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
+include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/ReservaLogicaHorarios.php');
 
 include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
 
 date_default_timezone_set("America/Bogota");
 $mensajes = new EnvioDeMensaje();
+$consultaL = new VisitanteLogica();
+$consultaHorarios = new ReservaLogicaHorarios();
 if (isset($_POST["enviarHorario"])) {
     if (
         strlen($_POST['cedula']) >= 1 && strlen($_POST['fecha']) >= 1 && strlen($_POST['hora'])
     ) {
-        if (registroPrevio($_POST['cedula'])) {
+        if ($consultaL->registroPrevio($_POST['cedula'])) {
             $completarRuta="/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva";
             $horaActual = date("G:i");
             $hora = trim($_POST['hora']);
@@ -31,12 +34,11 @@ if (isset($_POST["enviarHorario"])) {
                 } else {
                     $cedula = trim($_POST['cedula']);
 
-                    $consulta= new VisitanteLogica();
                     $datosUsuario= new Visitante();
 
-                    $datosUsuario->setNombre($consulta->consulta("nombre",$cedula));
-                    $datosUsuario->setApellido($consulta->consulta("apellido",$cedula));
-                    $datosUsuario->setTelefono($consulta->consulta("tel",$cedula));
+                    $datosUsuario->setNombre($consultaL->consulta("nombre",$cedula));
+                    $datosUsuario->setApellido($consultaL->consulta("apellido",$cedula));
+                    $datosUsuario->setTelefono($consultaL->consulta("tel",$cedula));
 
                     $nombre = $datosUsuario->getNombre();
                     $apellido = $datosUsuario->getApellido();
@@ -45,14 +47,14 @@ if (isset($_POST["enviarHorario"])) {
                     $hora = trim($_POST['hora']);
                     $dia = strtotime($fecha);
                     $dia = date("N", $dia);
-                    $cantDPersonas = cantidadDePersonas($fecha, $hora);
+                    $cantDPersonas = $consultaHorarios->cantidadDePersonas($fecha, $hora);
 
                     if ($dia != 7 && ($fecha != "2020-12-08" && $fecha != "2020-12-25" && $fecha != "2021-01-01")) {
                         if(($fecha == "2020-12-31" || $fecha == "2020-12-24") && ($hora == "7:30" || $hora == "18:30" || $hora == "20:00")){
                             if ($cantDPersonas < 54) {
-                                $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
+                                $cantRegistros = $consultaHorarios->buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
-                                    insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
+                                    $consultaHorarios->insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
                                     $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                 } else {
                                     $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
@@ -63,9 +65,9 @@ if (isset($_POST["enviarHorario"])) {
                         }else{
                             if ($hora == "7:30" || $hora == "18:30") {
                                 if ($cantDPersonas < 54) {
-                                    $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
+                                    $cantRegistros = $consultaHorarios->buscarPersonasCedula($fecha, $hora, $cedula);
                                     if ($cantRegistros < 1) {
-                                        insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
+                                        $consultaHorarios->insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
                                         $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                     } else {
                                         $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
@@ -80,9 +82,9 @@ if (isset($_POST["enviarHorario"])) {
                     } else {
                         if ($hora != "7:30") {
                             if ($cantDPersonas < 54) {
-                                $cantRegistros = buscarPersonasCedula($fecha, $hora, $cedula);
+                                $cantRegistros = $consultaHorarios->buscarPersonasCedula($fecha, $hora, $cedula);
                                 if ($cantRegistros < 1) {
-                                    insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
+                                    $consultaHorarios->insertaraLaMisa($nombre, $apellido, $cedula, $telefono, $fecha, $hora);
                                     $mensajes->mensaje("Su reserva fue exitosa", $completarRuta);
                                 } else {
                                     $mensajes->mensaje("Ya estas registrado para la misa del: " . $fecha . " a las: " . $hora, $completarRuta);
@@ -101,37 +103,4 @@ if (isset($_POST["enviarHorario"])) {
         }
     }
 }
-function registroPrevio($_uCedula)
-{
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
-    $query = "SELECT * FROM dato WHERE CC ='$_uCedula'";
-    $result = mysqli_query($conex, $query);
-    $filas = mysqli_num_rows($result);
-    if ($filas != null) {
-        return true;
-    } else {
-        return false;
-    }
-}
-function buscarPersonasCedula($fechaM, $horaM, $cedulaM)
-{
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
-    $query = "SELECT * FROM horarios WHERE fecha = '$fechaM' AND hora='$horaM'AND cedula='$cedulaM'";
-    $result = mysqli_query($conex, $query);
-    $filas = mysqli_num_rows($result);
-    return $filas;
-}
-function cantidadDePersonas($fechaM, $horaM)
-{
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
-    $query = "SELECT * FROM horarios WHERE fecha = '$fechaM' AND hora='$horaM'";
-    $result = mysqli_query($conex, $query);
-    $filas = mysqli_num_rows($result);
-    return $filas;
-}
-function insertaraLaMisa($nombreP, $apellidoP, $cedulaP, $telefonoP, $fechaP, $horaP)
-{
-    include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
-    $query = "INSERT INTO horarios(nombre,apellido,cedula,telefono,fecha,hora) VALUES ('$nombreP','$apellidoP', '$cedulaP','$telefonoP','$fechaP','$horaP')";
-    $result = mysqli_query($conex, $query);
-}
+?>

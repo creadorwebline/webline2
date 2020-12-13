@@ -24,5 +24,16 @@ class VisitanteLogica{
         $fila = $result->fetch_assoc();
         return $fila[$campo];
     }
+    function registroPrevio($_uCedula){
+        include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
+        $query = "SELECT * FROM dato WHERE CC ='$_uCedula'";
+        $result = mysqli_query($conex, $query);
+        $filas = mysqli_num_rows($result);
+        if ($filas != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 ?>
