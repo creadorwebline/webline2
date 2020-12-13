@@ -3,9 +3,10 @@
 error_reporting(0);
 //IMPORTANT!!!!!
 $usuariosession = $_SESSION['userV'];
-//include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
-include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
-//$visitante = new VisitanteLogica();
+include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
+//include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
+
+$actualizaUser = new VisitanteLogica();
 if (!$usuariosession) {
     header("Location: ../login/login");
     die();
@@ -18,7 +19,7 @@ if (!$usuariosession) {
 if(isset($_POST["personal"])){
     //include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
 }else if(isset($_POST["contrasena"])){
-    //$actualizaUser->cambioDeContraseña(trim($_POST["contrasenaN"]),$usuariosession);
+    $actualizaUser->cambioDeContraseña(trim($_POST["contrasenaN"]),$usuariosession);
 }
 ?>
 <!DOCTYPE html>
