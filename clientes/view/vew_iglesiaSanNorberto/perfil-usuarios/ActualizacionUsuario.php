@@ -3,9 +3,8 @@
 error_reporting(0);
 //IMPORTANT!!!!!
 $usuariosession = $_SESSION['userV'];
+include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
-//include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
-
 $actualizaUser = new VisitanteLogica();
 if (!$usuariosession) {
     header("Location: ../login/login");
@@ -17,7 +16,7 @@ if (!$usuariosession) {
     }
 }
 if(isset($_POST["personal"])){
-    //include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
+    $actualizaUser->datosPersonales(trim($_POST["nombre"]),trim($_POST["apellido"]),$usuariosession,trim($_POST["telefono"]));
 }else if(isset($_POST["contrasena"])){
     $actualizaUser->cambioDeContraseña(trim($_POST["contrasenaN"]),$usuariosession);
 }
@@ -40,7 +39,12 @@ if(isset($_POST["personal"])){
     <?php
         include("../registro-horarios/navbarr.html");
     ?>
-    <?php if($actualiza=="personal"){ ?>
+    <?php if($actualiza=="personal"){ 
+        $visitanteA = new Visitante();
+        $visitanteA->setNombre($actualizaUser->consulta("nombre",$usuariosession));
+        $visitanteA->setApellido($actualizaUser->consulta("apellido",$usuariosession));
+        $visitanteA->setTelefono($actualizaUser->consulta("tel",$usuariosession));
+        ?>
     <section class="container-login">
         <div class="registro">
             <form method="POST">
@@ -48,16 +52,13 @@ if(isset($_POST["personal"])){
                     <div class="container-registros-gray">
                         <p>Actualizar Datos Personales</p>
                         <div class="item">
-                            <input placeholder="Ingrese solo nombre/s" type="text" name="nombre" required minlength="3" pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
+                            <input placeholder="Ingrese solo nombre/s" type="text" name="nombre" required minlength="3" value=<?php echo $visitanteA->getNombre(); ?> pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
                         </div>
 				        <div class=" item">
-                            <input placeholder="Ingrese solo apellidos" type="text" name="apellido" required minlength="3" pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
+                            <input placeholder="Ingrese solo apellidos" type="text" name="apellido" required minlength="3" value=<?php echo $visitanteA->getApellido(); ?> pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
                         </div>
                         <div class="item">
-                            <input placeholder="Ingrese su número de identificación" required minlength="6" required maxlength="11" min="999999" type="text" name="cedula" pattern="[0-9]+">
-                        </div>
-                        <div class="item">
-                            <input placeholder="Ingrese su teléfono celular" type="text" name="telefono" required minlength="7" required maxlength="10" pattern="[0-9]+">
+                            <input placeholder="Ingrese su teléfono celular" type="text" name="telefono" required minlength="7" value = <?php echo $visitanteA->getTelefono(); ?> required maxlength="10" pattern="[0-9]+">
                         </div>
                         <input class="btn" type="submit" name="personal" value="Actualizar">;
                     </div>
@@ -75,7 +76,7 @@ if(isset($_POST["personal"])){
                     <div class="container-registros-gray">
                         <p>Cambiar Contraseña</p>
 				        <div class=" item">
-                            <input placeholder="Ingrese su contraseña nueva" type="password" name="contrasenaN" required minlength="3" pattern="[A-Za-zÁ-ý\u00f1\u00d1 ]+">
+                            <input placeholder="Ingrese su contraseña nueva" type="password" name="contrasenaN" required minlength="3" pattern="[A-Za-zÁ-ý\ ]+">
                         </div>
                         <input class="btn" type="submit" name="contrasena" value="Actualizar">;
                     </div>

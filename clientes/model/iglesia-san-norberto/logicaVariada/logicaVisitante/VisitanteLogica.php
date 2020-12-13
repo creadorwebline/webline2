@@ -17,5 +17,12 @@ class VisitanteLogica{
         $mensaje = new EnvioDeMensaje();
         $mensaje->mensaje("Actualizacion de datos personales con exitosa", "/webline/clientes/view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios");
     }
+    function consulta($campo,$usuario){
+        include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
+        $query = "SELECT ".$campo." FROM dato WHERE CC='$usuario'";
+        $result = mysqli_query($conex, $query);
+        $fila = $result->fetch_assoc();
+        return $fila[$campo];
+    }
 }
 ?>

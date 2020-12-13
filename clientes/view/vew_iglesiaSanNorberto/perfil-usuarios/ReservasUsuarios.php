@@ -9,23 +9,18 @@ if (!$usuariosession) {
 } else {
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
     include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/Visitante.php');
+    include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
     $usuario = $_SESSION['userV'];
     $query = "SELECT * FROM horarios WHERE cedula='$usuario'";
     $result = mysqli_query($conex, $query);
 
     $visitante = new Visitante();
-    $visitante->setNombre(consulta("nombre",$usuario));
-    $visitante->setApellido(consulta("apellido",$usuario));
-    $visitante->setCedula(consulta("CC",$usuario));
-    $visitante->setFecha(date("d-m-y",strtotime(consulta("fecha",$usuario))));
+    $consultar = new VisitanteLogica();
+    $visitante->setNombre($consultar->consulta("nombre",$usuario));
+    $visitante->setApellido($consultar->consulta("apellido",$usuario));
+    $visitante->setCedula($consultar->consulta("CC",$usuario));
+    $visitante->setFecha(date("d-m-y",strtotime($consultar->consulta("fecha",$usuario))));
 
-}
-function consulta($campo,$usuario){
-    include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/db/con_db.php');
-    $query = "SELECT ".$campo." FROM dato WHERE CC='$usuario'";
-    $result = mysqli_query($conex, $query);
-    $fila = $result->fetch_assoc();
-    return $fila[$campo];
 }
 ?>
 <!DOCTYPE html>

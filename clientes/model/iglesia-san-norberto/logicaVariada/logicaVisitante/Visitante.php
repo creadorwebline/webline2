@@ -4,6 +4,7 @@ class Visitante{
     private $apellido_visitante;
     private $cedula_visitante;
     private $fecha_visitante;
+    private $telefono_visitante;
 
     //metodos para el nombre
     public function setNombre($nombre){
@@ -35,6 +36,13 @@ class Visitante{
     }
     public function getFecha(){
         return $this->fecha_visitante;
+    }
+    //metodos para el telefono
+    public function setTelefono($telefono){
+        $this->telefono_visitante= $telefono;
+    }
+    public function getTelefono(){
+        return $this->telefono_visitante;
     }
 }
 ?>
