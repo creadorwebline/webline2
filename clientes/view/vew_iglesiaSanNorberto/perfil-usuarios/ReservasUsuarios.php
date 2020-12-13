@@ -64,6 +64,8 @@ function consulta($campo,$usuario){
                 <p>Apellido: <?php printf($visitante->getApellido()) ?></p>
                 <p>CC/ID: <?php printf($visitante->getCedula()) ?></p>
                 <p>Cuenta creada el: <?php printf($visitante->getFecha()) ?></p>
+                <p><a href="ActualizacionUsuario?update=pass">CAMBIAR CONTRASEÑA<a></p>
+                <p><a href="ActualizacionUsuario?update=personal">ACTUALIZAR DATOS PERSONALES<a></p>
             </div>
             <div class="reporteReservas">
                 <table>
@@ -74,7 +76,7 @@ function consulta($campo,$usuario){
                     </thead>
 
                     <tbody>
-                        <form id="temperatura" method="POST" action="ActualizarTemperatura.php">
+                        <form id="temperatura">
                             <?php
                             $numeracion = 0;
                             date_default_timezone_set("America/Bogota");
