@@ -2,14 +2,12 @@
 
 include($_SERVER['DOCUMENT_ROOT'].'/webline/clientes/db/con_db.php');
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/EnvioDeMensaje.php');
-//include("timephp/time.php");
 
 date_default_timezone_set("America/Bogota");
 $mensajes = new EnvioDeMensaje();
 if (isset($_POST["enviarHorario"])) {
     if (
-        strlen($_POST['nombre']) >= 1 && strlen($_POST['cedula']) >= 1 && strlen($_POST['fecha']) >= 1 &&
-        strlen($_POST['apellido']) >= 1 && strlen($_POST['telefono']) >= 1 && strlen($_POST['hora'])
+        strlen($_POST['cedula']) >= 1 && strlen($_POST['fecha']) >= 1 && strlen($_POST['hora'])
     ) {
         if (registroPrevio($_POST['cedula'])) {
             $completarRuta="/webline/clientes/view/vew_iglesiaSanNorberto/registro-horarios/reservaMisa/formularioDeReserva";
@@ -18,10 +16,7 @@ if (isset($_POST["enviarHorario"])) {
             $diaActual = date("Y-m-d");
             $fecha = strtotime(trim($_POST['fecha']));
             $fecha = date("Y-m-d", $fecha);
-            //////////////////////////////////////
-            echo $fecha;//////////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////
-            //verifica fecha
+            
             $consulta = "SELECT * FROM bloqueofechas WHERE fechabloqueada='$fecha' AND horabloqueada = '$hora'";
             $result = mysqli_query($conex, $consulta);
             $row = mysqli_fetch_array($result);

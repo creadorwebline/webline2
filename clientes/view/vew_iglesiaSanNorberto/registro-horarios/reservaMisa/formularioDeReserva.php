@@ -37,7 +37,6 @@
                         <div class="item">
                             <h3>Fecha a reservar</h3>
                             <input type="date" name="fecha" min="<?php printf($date) ?>" max=<?php printf($datef) ?> required>
-
                         </div>
                     </div>
 
