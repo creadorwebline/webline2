@@ -6,12 +6,12 @@ session_start();
 $usuarioSession = null;
 $usuarioSessionVisitante=null;
 $redireccion = null;
-$sesion = $_GET["sesion"];
-if(isset($_SESSION['user'])&&$sesion=="admin"){
+$tipDeCliente = $_GET["client"];
+if(isset($_SESSION['user'])&&$tipDeCliente=="admin"){
     $usuarioSession = $_SESSION['user'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/login/reservasMisas";
     
-}elseif(isset($_SESSION['userV'])&&$sesion=="visit"){
+}elseif(isset($_SESSION['userV'])&&$tipDeCliente=="visit"){
     $usuarioSessionVisitante = $_SESSION['userV'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios";
 }else{
@@ -20,7 +20,7 @@ if(isset($_SESSION['user'])&&$sesion=="admin"){
 }
 
 if (($usuarioSession=null)&&($usuarioSessionVisitante=null)) {
-    header($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/view/vew_iglesiaSanNorberto/login/login');
+    header($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/view/view_Servicios/servicios');
     die();
 } 
 
