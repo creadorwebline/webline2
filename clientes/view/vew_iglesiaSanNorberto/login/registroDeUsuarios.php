@@ -128,9 +128,6 @@ function consultasall($consultaall)
                         <td id="date">
                             <p name="fecha"><?php echo $row['fecha'] ?></p>
                         </td>
-                        <td id="date">
-                            <p name="fecha"><?php echo $row['fecha'] ?></p>
-                        </td>
                         <td><a href="/webline/clientes/model/iglesia-san-norberto/login/Borrarusuario.php?cc=<?php echo $row['CC']; ?>">borrar</a></td>
                         
                     </tr>
