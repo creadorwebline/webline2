@@ -1,4 +1,13 @@
 <?php
+session_start();
+//IMPORTANT!!!!!
+error_reporting(0);
+//IMPORTANT!!!!!
+$usuariosession = $_SESSION['user'];
+if (!$usuariosession) {
+    header("Location: ../login/login?tipo=admin");
+    die();
+}
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/login/VerificacionDeSession.php');
 
 $limit = 30;

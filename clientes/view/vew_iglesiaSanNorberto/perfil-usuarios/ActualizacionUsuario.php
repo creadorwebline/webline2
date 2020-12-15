@@ -7,7 +7,7 @@ include($_SERVER['DOCUMENT_ROOT'] .'/webline/clientes/model/iglesia-san-norberto
 include($_SERVER['DOCUMENT_ROOT'] . '/webline/clientes/model/iglesia-san-norberto/logicaVariada/logicaVisitante/VisitanteLogica.php');
 $actualizaUser = new VisitanteLogica();
 if (!$usuariosession) {
-    header("Location: ../login/login");
+    header("Location: ../login/login?tipo=visitante");
     die();
 } else {
     $actualiza = $_GET['update'];

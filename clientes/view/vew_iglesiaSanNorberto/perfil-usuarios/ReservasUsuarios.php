@@ -4,7 +4,7 @@ error_reporting(0);
 //IMPORTANT!!!!!
 $usuariosession = $_SESSION['userV'];
 if (!$usuariosession) {
-    header("Location: ../login/login");
+    header("Location: ../login/login?tipo=visitante");
     die();
 } else {
     date_default_timezone_set("America/Bogota");
