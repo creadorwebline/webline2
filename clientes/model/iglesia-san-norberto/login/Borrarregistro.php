@@ -11,7 +11,7 @@ if(isset($_SESSION['user'])&&$tipDeCliente=="admin"){
     $usuarioSession = $_SESSION['user'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/login/reservasMisas";
     
-}elseif(isset($_SESSION['userV'])&&$tipDeCliente=="visit"){
+}elseif(isset($_SESSION['userV'])&&$tipDeCliente=="visitor"){
     $usuarioSessionVisitante = $_SESSION['userV'];
     $redireccion = "../../../view/vew_iglesiaSanNorberto/perfil-usuarios/ReservasUsuarios";
 }else{
